@@ -1,0 +1,11 @@
+.show__invalid {
+    display: block !important;
+    margin: 5px 0 20px;
+    font-size: 14px;
+}
+
+.hide__invalid {
+    display: none
+}
+
+
