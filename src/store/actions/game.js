@@ -38,17 +38,16 @@ export const initGame = () => {
         dispatch(fetchGameStart())
         axios.get(`https://sportspoll-aa1e5.firebaseio.com/1/users/${userId}/.json`)
             .then( response => {
-                const shownGames = keys(response.data)
-
+                const shownGames = keys(response.data).map(el => +el)
                 axios.get(`https://sportspoll-aa1e5.firebaseio.com/1/games.json`)
                     .then(response => {
 
                         let arrayOfAvailableGames = []
-
                         if (shownGames.length > 0) {
                             if ( shownGames.length === response.data.length) {
                                 return dispatch(setNoMoreGames())
                             }
+
                             response.data.map( el => {
                                 if (shownGames.indexOf(el.id) === -1) {
                                     arrayOfAvailableGames.push(el)
